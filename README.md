@@ -11,10 +11,12 @@ This repository contains all the information needed to build your RISC-V pipelin
 
 # Introduction to RISC-V ISA 
 
-A RISC-V ISA is defined as a base integer ISA, which must be present in any implementation, plus optional extensions to the base ISA. Each base integer instruction set is characterized by
-  1. Width of the integer registers (XLEN) 
-  2. Corresponding size of the address space
-  3. Number of integer registers (32 in RISC-V)
+A RISC-V(pronounced “risk-five”) ISA is defined as a base integer ISA, which must be present in any implementation, plus optional extensions to the base ISA.
+Each base integer instruction set is characterized by the width of the integer registers and the corresponding size of the address space and by the number
+of integer registers. There are two primary base integer variants, RV32I and RV64I.<br>
+(XLEN)-  We use the term XLEN to refer to the width of an integer register in bits (either 32 or 64).<br>
+The other ISA's are RV32E(subset variant of the RV32I base instruction set) and RV128I(XLEN = 128).
+
 
 More details on RISC-V ISA can be obtained [here](https://github.com/riscv/riscv-isa-manual/releases/download/draft-20200727-8088ba4/riscv-spec.pdf).
 
@@ -30,18 +32,23 @@ The GNU Toolchain is a set of programming tools in Linux systems that programmer
 Under the risc-v toolchain, 
   * To use the risc-v gcc compiler use the below command:
   
-     `riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o <object filename> <C filename>`
+     `riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o <object filename.o> <C filename>`
   
   * To use the risc-v gcc compiler use the below command(works in a compiled form compared to previous one):
 
-    `riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o <object filename> <C filename>`
+    `riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o <object filename.o> <C filename>`
 
     More generic command with different options:
 
-    `riscv64-unknown-elf-gcc <compiler option -O1 ; Ofast> <ABI specifier -lp64; -lp32; -ilp32> <architecture specifier -RV64 ; RV32> -o <object filename.o> <C      filename>`
-
+    `riscv64-unknown-elf-gcc <compiler option -O1 ; Ofast> <ABI specifier -lp64; -lp32; -ilp32> <architecture specifier -rv64 ; rv32> -o <object filename.o> <C      filename>`
+  
+    The -march argument is essentially defined by the RISC-V user-level ISA manual. -march controls instruction set from which the compiler is allowed to generate instructions. This argument determines the set of implementations that a program will run on: any RISC-V compliant system that subsumes the -march value used to compile a program should be able to run that program.
+    
+    The -mabi argument to GCC specifies both the integer and floating-point ABIs to which the generated code complies. Much like how the -march argument specifies which hardware generated code can run on, the -mabi argument specifies which software generated code can link against. We use the standard naming scheme for integer ABIs (ilp32 or lp64), with an argumental single letter appended to select the floating-point registers used by the ABI (ilp32 vs ilp32f vs ilp32d).
+    
+    
     More details on compiler options can be obtained [here](https://www.sifive.com/blog/all-aboard-part-1-compiler-args)
-
+    
   * To view assembly code use the below command,
     
     `riscv64-unknown-elf-objdump -d <object filename>`
@@ -60,17 +67,26 @@ Under the risc-v toolchain,
     
     Once done with installation add the PATH to .bashrc file for future use.
 
-Test Case for the above commands [(Summation of 1 to 9)]
+Test Case for the above commands [(Summation of 1 to 9)]()
 
-  * Below image shows the disassembled file `sum1ton.o` with `main` function highlighted.
+  * Below image shows the disassembled file `sum1ton.o` with `main` function highlighted, while the command riscv-unknown-elf-gcc is run with -O1.
+    
+    ![disassemble]
+  
+  * Below image shows the disassembled file `sum1ton.o` with `main` function highlighted, while the command riscv-unknown-elf-gcc is run with -Ofast.
 
     ![disassemble]
+
 
   * To view the registers we can use command as `reg <core> <register name>`. 
 
     Below image shows how to debug the disassembled file using Spike simulator where a1,a2 register are checked before and after the instructions got executed.
 
     ![spike_debug]
+
+
+# Signed and Unsigned Labs 
+
 
 # Introduction to ABI
 

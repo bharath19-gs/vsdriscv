@@ -82,26 +82,30 @@ Under the risc-v toolchain,
     
     Once done with installation add the PATH to .bashrc file for future use.
 
-Test Case for the above commands [(Summation of 1 to 9)]()
+Test Case for the above commands [(Summation of 1 to 9)](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/sum1ton_code_snippet.png)
 
   * Below image shows the disassembled file `sum1ton.o` with `main` function highlighted, while the command riscv-unknown-elf-gcc is run with -O1.
     
-    ![disassemble]
+    ![disassemble](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/sum1ton_objectfile_code_with_O1command.png)
   
   * Below image shows the disassembled file `sum1ton.o` with `main` function highlighted, while the command riscv-unknown-elf-gcc is run with -Ofast.
 
-    ![disassemble]
+    ![disassemble](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/sum1ton_objectfile_code_with_Ofastcommand.png)
 
 
   * To view the registers we can use command as `reg <core> <register name>`. 
 
     Below image shows how to debug the disassembled file using Spike simulator where a1,a2 register are checked before and after the instructions got executed.
 
-    ![spike_debug]
+    ![spike_debug](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/spike_debugging.png)
 
 
 # Signed and Unsigned Labs 
+    
+ * in the below images we can see the signed and unsigned numbers being run using the c code.
 
+    ![image1](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/signed_and_unsigned_image.png)
+    ![image2](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/signed_and_unsigned.png)
 
 # Introduction to ABI
 
@@ -112,60 +116,17 @@ So, it is system call interface used by the application program to access the re
 
 ![calling_convention]
 
-Test Case for ABI Call: [Summation of 1 to 9] through [assembly code]
+Test Case for ABI Call: Summation of 1 to 7 through assembly code
 
-  * Below image shows the `main` function.
+  * Below image shows the `main` function and the `load` assembly code. 
 
-    ![main_ABI]
+    ![main_ABI](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/day2_c_assembly_code.png)
+  * Below image shows the output of Summation from 1 to 7.
 
-  * Below image shows 2 sections from [load.S] (one is load and other is loop).
-
-    ![load_ABI
-
-  * Below image shows the output of Summation from 1 to 9.
-
-    ![compile_ABI]
+    ![compile_ABI](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/spike_simulation.png)
 
 # Introduction to RISC-V ISA 
 
-
-   
-# Integer Number Representation
-
-## 64-bit Number System For Unsigned Numbers
-
-[(UnsignedHighest)](Day1/unsignedHighest.c)
-![image](https://user-images.githubusercontent.com/55539862/170096931-d515a400-f43d-4156-a32d-15542876ac32.png)
-
-
-## 64-bit Number System For Signed Numbers
-[(signedHighest)](Day1/signedHighest.c)
-![image](https://user-images.githubusercontent.com/55539862/170097222-b436609b-2be9-4e75-aed5-2ef310812a8b.png)
-
-# Day2
-# Introduction to ABI
-
-An Application Binary Interface is a set of rules enforced by the Operating System on a specific architecture. So, Linker converts relocatable machine code to absolute machine code via ABI interface specific to the architecture of machine.
-
-So, it is system call interface used by the application program to access the registers specific to architecture. Overhere the architecture is RISC-V, so to access 32 registers of RISC-V below is the table which shows the calling convention (ABI name) given to registers for the application programmer to use.
-[(Image source)](https://riscv.org/wp-content/uploads/2015/01/riscv-calling.pdf)
-![image](https://github.com/shivanishah269/risc-v-core/raw/master/Images/calling_convetion.png)
-
-Test Case for ABI Call: [Summation of 1 to 9](codes/1to9_custom.c) through [assembly code](codes/load.S),
-
-  * Below image shows the `main` function.
-
-    ![image](https://user-images.githubusercontent.com/55539862/170110000-84c30bf8-3458-4c0d-bccc-2c3051423976.png)
-
-   
-
-  * Below image shows 2 sections from [load.S](codes/load.S) (one is load and other is loop).
-    ![image](https://user-images.githubusercontent.com/55539862/170112340-a43f6559-ab0a-46a9-bfb0-d247b7e8c84f.png)
-
-  * Below image shows the output of Summation from 1 to 5.
-    ![image](https://user-images.githubusercontent.com/55539862/170112689-b46651db-375f-43fb-ad08-da449e13712c.png)
-
-   ![image](https://user-images.githubusercontent.com/55539862/170114877-d36a6040-466c-4838-93f9-214aedaa43ef.png)
 ## Lab 2 : To run and verify on a RISC-V Core
   An RTL implementation of a RISC-V core has been provided to us and we run the above program using the scripts provided to using iverilog simulator, just to observe  the behaviour of the program in hardware. A similar core would be implemented by us in the forthcoming days.
   
@@ -193,8 +154,6 @@ This section contains sample program already written just to show the flow of ho
 
 4. To list the contents of the directory, type : 
 `$ls -ltr`
-![image](https://user-images.githubusercontent.com/55539862/170115767-2515a8cb-1c14-447b-9d98-599cbf8268bd.png)
-
 
 
 5. To view the RISC-V CPU code (for picorv32) written in Verilog :
@@ -202,8 +161,6 @@ This section contains sample program already written just to show the flow of ho
 
 6. To view the testbench file:
 `$vim testbench.v` .  This is where we read the hexfile. Scroll down to see the line : **$readmemh("firmware.hex",memory)**
-![image](https://user-images.githubusercontent.com/55539862/170116636-5e109d6d-7813-4fab-be8d-7cc870976a27.png)
-
 
 7. To view the standard script of how do we create the hex file :
 `$vim rv32im.sh` .  This file contains basically all the necessary set of scripts required to convert the C and Assembly code into hex file and load it into the memory, and then run it. 
@@ -217,13 +174,12 @@ This section contains sample program already written just to show the flow of ho
 10. To view the internals of the firmware hex files:
 For 64-bit : `$vim firmware.hex`
 For 32-bit : `$vim firmware32.hex`  
-![image](https://user-images.githubusercontent.com/55539862/170117235-60477d86-6205-4d67-b863-ead303d2267f.png)
 
 These files shows how the application software is converted into bitstreams and this firmware file is loaded into the memory through the testbench. This file is then processed by the RISC-V core and finally it displays the output results.
 
 ### Final Output snap of Day_2
 
-![image](https://user-images.githubusercontent.com/55539862/170117548-905123db-8079-46b1-8386-26e688fac025.png)
+![image]
 
 # Digital Logic with TL-Verilog and Makerchip
 
@@ -231,33 +187,43 @@ These files shows how the application software is converted into bitstreams and 
 
 All the examples shown below are done on Makerchip IDE using TL-verilog. Also there are other tutorials present on IDE which can be found [here](https://makerchip.com/sandbox/) under Tutorials section.
 
+![makerchip](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/maker_chip.png)
+
 ## Combinational logic
 
 Starting with basic example in combinational logic is an inverter. To write the logic of inverter using TL-verilog is `$out = ! $in;`. There is no need to declare `$out` and `$in` unlike Verilog. There is also no need to assign `$in`. Random stimulus is provided, and a warning is produced. 
-  ### 1. [Full Adder]
+  ### 1. not_gate
   
-![image]
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/not_gate.png)
 
 
  ### 2. [Combinational Calculator]
  
-Below is snapshot of Combinational Calculator.
+Below is snapshot of Combinational Calculator that has to be implemented.
 
-![image](https://user-images.githubusercontent.com/55539862/170273193-de277a9e-0317-4f60-a707-6223fa56c9bf.png)
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/calculator_to_be_implemented.png)
+
+The implementation of the calculator.
+
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/calculator.png)
+
+Below image shows the implemetation of mux using makerchip
+
+![mux](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/mux_maker_chip.png)
 
 ## Sequential logic
 
-
-
 Starting with basic example in sequential logic is Fibonacci Series with reset. To write the logic of Series using TL-Verilog is `$num[31:0] = $reset ? 1 : (>>1$num + >>2$num)`. This operator `>>?` is ahead of operator which will provide the value of that signal 1 cycle before and 2 cycle before respectively.
 
-## 1. Counter
-![image]
+## 1. Fibonaci series 
+
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/fibonacci.png)
 
 
-## 2. Sequential Calculator
-Below is snapshot of Sequential Calculator which remembers the last result, and uses it for the next calculation.
-![image]
+
+## 2. Sequential Counter
+Below is snapshot of Sequential Counter which remembers the last result, and uses it.
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/counter.png)
 
 ## Pipelined logic
 
@@ -265,7 +231,7 @@ Timing abstract powerful feature of TL-Verilog which converts a code into pipeli
 
 Below is snapshot of 2-cycle calculator which clears the output alternatively and output of given inputs are observed at the next cycle.
 
-![image](https://user-images.githubusercontent.com/55539862/170309779-95b0bfa8-5e21-4290-9659-02d92158becb.png)
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/calculator_pipelining.png)
 
 
 ## Validity
@@ -274,15 +240,16 @@ Validity is TL-verilog means signal indicates validity of transaction and descri
 
 Below is snapshot of 2-cycle calculator with validity. 
 
-![image]
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/calculator_pipelining_lab2.png)
+
 # Basic RISC-V CPU micro-architecture
 
 Designing the basic processor of 3 stages fetch, decode and execute based on RISC-V ISA.
 
 ## Next PC Logic
-![image]
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/pc.png)
 
-## [Fetch]
+## Fetch
 
 * Program Counter (PC): Holds the address of next Instruction
 * Instruction Memory (IM): Holds the set of instructions to be executed
@@ -290,7 +257,7 @@ Designing the basic processor of 3 stages fetch, decode and execute based on RIS
 During Fetch Stage, processor fetches the instruction from the IM pointed by address given by PC.
 
 Below is snapshot from Makerchip IDE after performing the Fetch Stage.
-![image]
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/fetch.png)
 
 
 
@@ -311,7 +278,7 @@ Below is snapshot from Makerchip IDE after performing the Decode Stage.
 
 
 
-## [Register File Read and Write]
+## [Register File Read and Write]()
 
 Here the Register file is 2 read, 1 write means 2 read and 1 write operation can happen simultanously.
 
@@ -329,9 +296,9 @@ Outputs:
 
 Below is snapshot from Makerchip IDE after performing the Register File Read followed by Register File Write.
 
-![image](https://user-images.githubusercontent.com/55539862/170552485-37f40413-7b42-4f31-977f-69784f1abdc9.png)
+![image]()
 
-![image](https://user-images.githubusercontent.com/55539862/170554784-f053a7c2-ca33-47ae-9f58-c530e17c4cae.png)
+![image]()
 
 ## [Execute](Day3_5/ALU.tlv)
 
@@ -352,7 +319,7 @@ Below is snapshot from Makerchip IDE after including the control logic for branc
 
 Converting non-piepleined CPU to pipelined CPU using timing abstract feature of TL-Verilog. This allows easy retiming wihtout any risk of funcational bugs. More details reagrding Timing Abstract in TL-Verilog can be found in IEEE Paper ["Timing-Abstract Circuit Design in Transaction-Level Verilog" by Steven Hoover.](https://ieeexplore.ieee.org/document/8119264)
 
-## [Pipelining the CPU](Day3_5/Pipelining_the_CPU.tlv)
+## Pipelining the CPU
 
 Pipelining the CPU with branches still having 3 cycle delay rest all instructions are pipelined. Pipelining the CPU in TL-Verilog can be done in following manner:
 ```
@@ -369,12 +336,12 @@ Below is snapshot of pipelined CPU with a test case of assembly program which do
 ```
 *passed = |cpu/xreg[10]>>5$value == (1+2+3+4+5+6+7+8+9);
 ```
-![image](https://user-images.githubusercontent.com/55539862/170827725-85054bd4-23fd-4187-96b3-daea2108f835.png)
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/pipe_lined_riscv_testbench.png)
 
 
 
 
-## [Load and store instructions and memory](Day3_5/Load_Store.tlv)
+## Load and store instructions and memory
 
 Similar to branch, load will also have 3 cycle delay. So, added a Data Memory 1 write/read memory.
 
@@ -393,15 +360,22 @@ Added test case to check fucntionality of load/store. Stored the summation of 1 
 ```
 Below is snapshot from Makerchip IDE after including load/store instructions.
 
-![image](https://user-images.githubusercontent.com/55539862/170827669-395d0d5e-3fe8-4b11-9566-7fd8f8b5ad4f.png)
-## [Completing the RISC-V CPU](Day3_5/Final.tlv)
+![image]()
+
+## [Completing the RISC-V CPU]()
 
 Added Jumps and completed Instruction Decode and ALU for all instruction present in RV32I base integer instruction set.
 
 Below is final Snapshot of Complete Pipelined RISC-V CPU.
-![image](https://user-images.githubusercontent.com/55539862/170813939-8c0b30ad-16fb-4f54-b22b-d372f45cb7d1.png)
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/final_riscv.png)
 
 
 # Acknowledgements
 - [Kunal Ghosh](https://github.com/kunalg123), Co-founder, VSD Corp. Pvt. Ltd.
 - [Steve Hoover](https://github.com/stevehoover), Founder, Redwood EDA
+- Shivani Shah, TA
+- Shivam Potdar, TA
+- Vineet Jain, TA
+
+# Author 
+- [Bharath G S](https://github.com/bharath19-gs), BE(Electronics and Communication)

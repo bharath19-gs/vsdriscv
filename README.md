@@ -21,8 +21,8 @@ This repository contains all the information needed to build your RISC-V pipelin
   - [Pipelining the CPU](#pipelining-the-cpu)
   - [Load and store instructions and memory](#load-and-store-instructions-and-memory)
   - [Completing the RISC-V CPU](#completing-the-risc-v-cpu)
-
 - [Acknowledgements](#acknowledgements)
+- [Author](#author)
 
 # Introduction to RISC-V ISA 
 

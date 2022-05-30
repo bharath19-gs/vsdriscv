@@ -100,7 +100,7 @@ Test Case for the above commands [(Summation of 1 to 9)](https://github.com/bhar
     ![spike_debug](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/spike_debugging.png)
 
 
-# Signed and Unsigned Labs 
+# Signed and Unsigned interger Labs 
     
  * in the below images we can see the signed and unsigned numbers being run using the c code.
 
@@ -177,9 +177,7 @@ For 32-bit : `$vim firmware32.hex`
 
 These files shows how the application software is converted into bitstreams and this firmware file is loaded into the memory through the testbench. This file is then processed by the RISC-V core and finally it displays the output results.
 
-### Final Output snap of Day_2
 
-![image]
 
 # Digital Logic with TL-Verilog and Makerchip
 
@@ -197,7 +195,7 @@ Starting with basic example in combinational logic is an inverter. To write the 
 ![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/not_gate.png)
 
 
- ### 2. [Combinational Calculator]
+ ### 2. Combinational Calculator
  
 Below is snapshot of Combinational Calculator that has to be implemented.
 
@@ -274,11 +272,11 @@ Below is snapshot from Makerchip IDE after performing the Fetch Stage.
 Instruction Format includes Opcode, immediate value, source address, destination address. During Decode Stage, processor decodes the instruction based on instruction format and type of instruction.
 
 Below is snapshot from Makerchip IDE after performing the Decode Stage.
-![image]
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/decode_instructions.png)
 
 
 
-## [Register File Read and Write]()
+## Register File Read and Write
 
 Here the Register file is 2 read, 1 write means 2 read and 1 write operation can happen simultanously.
 
@@ -296,25 +294,26 @@ Outputs:
 
 Below is snapshot from Makerchip IDE after performing the Register File Read followed by Register File Write.
 
-![image]()
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/read.png)
 
-![image]()
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/write.png)
 
-## [Execute](Day3_5/ALU.tlv)
+## Execute
 
 During the Execute Stage, both the operands perform the operation based on Opcode.
 
 Below is snapshot from Makerchip IDE after performing the Execute Stage.
 
-![image](https://user-images.githubusercontent.com/55539862/170557069-b68ec260-3bbd-4f26-ac05-e6ef816564d1.png)
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/post_execute.png)
 
-## [Control Logic](Day3_5/Branch.tlv)
+## Control Logic
 
 During Decode Stage, branch target address is calculated and fed into PC mux. Before Execute Stage, once the operands are ready branch condition is checked.
 
 Below is snapshot from Makerchip IDE after including the control logic for branch instructions.
 
-![image](https://user-images.githubusercontent.com/55539862/170557581-89513a5e-1a4d-4fbc-8a0a-4e8797446623.png)
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/control_branch.png)
+
 # Pipelined RISC-V CPU
 
 Converting non-piepleined CPU to pipelined CPU using timing abstract feature of TL-Verilog. This allows easy retiming wihtout any risk of funcational bugs. More details reagrding Timing Abstract in TL-Verilog can be found in IEEE Paper ["Timing-Abstract Circuit Design in Transaction-Level Verilog" by Steven Hoover.](https://ieeexplore.ieee.org/document/8119264)
@@ -360,9 +359,9 @@ Added test case to check fucntionality of load/store. Stored the summation of 1 
 ```
 Below is snapshot from Makerchip IDE after including load/store instructions.
 
-![image]()
+![image](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/load_store.png)
 
-## [Completing the RISC-V CPU]()
+## Completing the RISC-V CPU
 
 Added Jumps and completed Instruction Decode and ALU for all instruction present in RV32I base integer instruction set.
 

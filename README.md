@@ -82,7 +82,7 @@ Under the risc-v toolchain,
     
     Once done with installation add the PATH to .bashrc file for future use.
 
-Test Case for the above commands [(Summation of 1 to 9)](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/sum1ton_code_snippet.png)
+Test Case for the above commands [(Summation of 1 to 5)](https://github.com/bharath19-gs/vsdriscv/blob/main/Introduction/sum1ton_code_snippet.png)
 
   * Below image shows the disassembled file `sum1ton.o` with `main` function highlighted, while the command riscv-unknown-elf-gcc is run with -O1.
     
